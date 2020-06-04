@@ -1,0 +1,43 @@
+{
+  "name": "typescript-template",
+  "version": "0.0.1",
+  "description": "My TypeScript(Node) Template",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "homepage": "",
+  "author": {
+    "name": "InkoHX",
+    "email": "inkohx@gmail.com",
+    "url": "https://about.inkohx.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/InkoHX/***.git"
+  },
+  "bugs": {
+    "url": "https://github.com/InkoHX/***/issues"
+  },
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/inkohx"
+  },
+  "keywords": [],
+  "scripts": {
+    "lint": "eslint --ext .ts --ignore-path .gitignore ./src",
+    "lint:fix": "eslint --ext .ts --ignore-path .gitignore ./src --fix",
+    "compile": "tsc -p .",
+    "compile:test": "tsc -p . --noEmit",
+    "watch": "tsc -w -p .",
+    "watch:test": "tsc -w -p . --noEmit"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {
+    "@inkohx/eslint-config-codestyle": "^2.1.2",
+    "@types/node": "^14.0.10",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "eslint": "^6.8.0",
+    "typescript": "^3.9.3"
+  }
+}
