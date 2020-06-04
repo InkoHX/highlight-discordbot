@@ -1,12 +1,12 @@
 import { AwaitMessagesOptions, Client, Collection, Message } from 'discord.js'
-import { highlightAuto, listLanguages } from 'highlight.js'
+import { highlightAuto } from 'highlight.js'
 
 const client = new Client()
 
 client.once('ready', () => console.log('READY'))
 
 const commandName = '>highlight'
-const languageSubset = listLanguages().filter(value => value !== 'livecodeserver')
+const languageSubset = ['javascript', 'typescript']
 const awaitMessageOptions: AwaitMessagesOptions = {
   max: 1,
   time: 30000,
