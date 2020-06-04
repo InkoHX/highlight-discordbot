@@ -32,7 +32,7 @@ client.on('message', async message => {
   if (author.bot || message.system) return
   if (!message.content.startsWith(commandName)) return
 
-  const targetId = (/^(?<targetId>\d{17,19})$/us).exec(message.content)?.groups?.targetId
+  const targetId = (/^(?<targetId>\d{17,19})$/u).exec(message.content)?.groups?.targetId
 
   if (!targetId) return message.reply('ハイライトするメッセージのIDを送信してください、')
     .then(() => awaitMessages(message))
