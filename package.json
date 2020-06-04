@@ -1,21 +1,21 @@
 {
-  "name": "typescript-template",
+  "name": "highlight-discordbot",
   "version": "0.0.1",
-  "description": "My TypeScript(Node) Template",
+  "description": "Highlight messages",
   "main": "dist/index.js",
   "license": "MIT",
   "homepage": "",
   "author": {
     "name": "InkoHX",
-    "email": "inkohx@gmail.com",
-    "url": "https://about.inkohx.me"
+    "email": "root@inkohx.dev",
+    "url": "https://inkohx.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/InkoHX/***.git"
+    "url": "https://github.com/InkoHX/highlight-discordbot.git"
   },
   "bugs": {
-    "url": "https://github.com/InkoHX/***/issues"
+    "url": "https://github.com/InkoHX/highlight-discordbot/issues"
   },
   "funding": {
     "type": "patreon",

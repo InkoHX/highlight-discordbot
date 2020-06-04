@@ -2,9 +2,15 @@
   align="center"
 >
 
-# Project Name
+# highlight-discordbot
 
-![LICENCE](https://img.shields.io/github/license/InkoHX/project-name?label=LICENCE&style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/InkoHX/project-name)
+![LICENCE](https://img.shields.io/github/license/InkoHX/highlight-discordbot?label=LICENCE&style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/InkoHX/highlight-discordbot)
 
 </div>
+
+## Usage
+
+```txt
+>highlight <Message ID>
+```
