@@ -14,20 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js v12.x
+    - name: Use Node.js v14
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
-    - name: Restore cache.
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-npm-
-    - name: npm install and lint
+        node-version: 14
+    - name: yarn install and lint
       run: |
-        npm ci
-        npm run lint
-      env:
-        CI: true
+        yarn --frozen-lockfile
+        yarn lint
+        yarn compile:test
