@@ -11,20 +11,34 @@ const languageSubset = ['javascript', 'typescript']
 
 const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): Promise<Message> => {
   if (targetMessage.author.bot || targetMessage.system) return executorMessage.reply('ボットまたはシステムが送信したメッセージはハイライトできません。')
-  const code = highlightAuto(targetMessage.content, languageSubset).language
+  const code = highlightAuto(targetMessage.cleanContent, languageSubset).language
 
-  const formattedContent = format(targetMessage.content)
+  try {
+    const formattedContent = format(targetMessage.cleanContent, { parser: 'typescript' })
 
-  return executorMessage.reply(formattedContent, { code })
+    return executorMessage.reply(formattedContent, { code })
+  } catch (_error) {
+    return executorMessage.reply('フォーマット中にエラーが発生したため、ハイライトのみ実行されました。')
+      .then(message => message.channel.send(targetMessage.cleanContent, { code }))
+  }
+}
+
+const isHighlightCommand = (message: Message): boolean => {
+  const clientUser = message.client.user
+
+  if (message.content.startsWith(commandName)) return true
+  if (clientUser && message.mentions.has(clientUser)) return true
+
+  return false
 }
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 client.on('message', message => {
   const author = message.author
   if (author.bot || message.system) return
-  if (!message.content.startsWith(commandName)) return
+  if (!isHighlightCommand(message)) return
 
-  const targetId = (/(?<targetId>\d{17,19})/u).exec(message.content)?.groups?.targetId
+  const targetId = (/(?<targetId>\d{17,19})/u).exec(message.cleanContent)?.groups?.targetId
 
   if (!targetId) return message.channel.messages.fetch({ before: message.id, limit: 1 })
     .then(messages => messages.first())
