@@ -9,7 +9,7 @@ client.once('ready', () => console.log('READY'))
 const commandName = '>highlight'
 const languageSubset = ['javascript', 'typescript']
 
-const sendHighlightedCode = async (targetMessage: Message, executorMessage: Message): Promise<Message> => {
+const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): Promise<Message> => {
   if (targetMessage.author.bot || targetMessage.system) return executorMessage.reply('ボットまたはシステムが送信したメッセージはハイライトできません。')
   const code = highlightAuto(targetMessage.content, languageSubset).language
 
@@ -19,7 +19,7 @@ const sendHighlightedCode = async (targetMessage: Message, executorMessage: Mess
 }
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
-client.on('message', async message => {
+client.on('message', message => {
   const author = message.author
   if (author.bot || message.system) return
   if (!message.content.startsWith(commandName)) return
