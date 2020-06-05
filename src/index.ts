@@ -1,5 +1,6 @@
 import { Client, Message } from 'discord.js'
 import { highlightAuto } from 'highlight.js'
+import { format } from 'prettier'
 
 const client = new Client()
 
@@ -12,7 +13,9 @@ const sendHighlightedCode = async (targetMessage: Message, executorMessage: Mess
   if (targetMessage.author.bot || targetMessage.system) return executorMessage.reply('ボットまたはシステムが送信したメッセージはハイライトできません。')
   const code = highlightAuto(targetMessage.content, languageSubset).language
 
-  return executorMessage.reply(targetMessage.content, { code })
+  const formattedContent = format(targetMessage.content)
+
+  return executorMessage.reply(formattedContent, { code })
 }
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
