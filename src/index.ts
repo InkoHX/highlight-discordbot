@@ -16,11 +16,9 @@ const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): 
   if (targetMessage.author.bot || targetMessage.system) return executorMessage.reply('ボットまたはシステムが送信したメッセージはハイライトできません。')
   const code = highlightAuto(targetMessage.cleanContent, languageSubset).language as Nullable<LanguageSubset> ?? 'livecodeserver'
 
-  const parser = code === 'javascript'
+  const parser = code === 'javascript' || code === 'livecodeserver'
     ? 'typescript'
-    : code === 'livecodeserver'
-      ? 'typescript'
-      : code
+    : code
 
   try {
     const formattedContent = format(targetMessage.cleanContent, { parser })
