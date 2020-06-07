@@ -26,8 +26,8 @@ const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): 
     const formattedContent = format(targetMessage.cleanContent, { parser })
 
     return executorMessage.reply(formattedContent, { code })
-  } catch (_error) {
-    return executorMessage.reply('フォーマット中にエラーが発生したため、ハイライトのみ実行されました。')
+  } catch (error) {
+    return executorMessage.reply(error, { code: 'js' })
       .then(message => message.channel.send(targetMessage.cleanContent, { code }))
   }
 }
