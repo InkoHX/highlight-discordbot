@@ -2,6 +2,7 @@ import { Client, Message } from 'discord.js'
 import { highlightAuto } from 'highlight.js'
 import { format } from 'prettier'
 
+type Nullable<T> = T | undefined | null 
 type LanguageSubset = 'typescript' | 'javascript' | 'yaml' | 'json'
 
 const client = new Client()
@@ -13,10 +14,16 @@ const languageSubset: LanguageSubset[] = ['javascript', 'typescript', 'yaml', 'j
 
 const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): Promise<Message> => {
   if (targetMessage.author.bot || targetMessage.system) return executorMessage.reply('ボットまたはシステムが送信したメッセージはハイライトできません。')
-  const code = highlightAuto(targetMessage.cleanContent, languageSubset).language as LanguageSubset
+  const code = highlightAuto(targetMessage.cleanContent, languageSubset).language as Nullable<LanguageSubset> ?? 'livecodeserver'
+
+  const parser = code === 'javascript'
+    ? 'typescript'
+    : code === 'livecodeserver'
+      ? 'typescript'
+      : code
 
   try {
-    const formattedContent = format(targetMessage.cleanContent, { parser: code === 'javascript' ? 'typescript' : code })
+    const formattedContent = format(targetMessage.cleanContent, { parser })
 
     return executorMessage.reply(formattedContent, { code })
   } catch (_error) {
