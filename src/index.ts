@@ -30,14 +30,9 @@ const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): 
   }
 }
 
-const isHighlightCommand = (message: Message): boolean => {
-  const clientUser = message.client.user
-
-  if (message.content.startsWith(commandName)) return true
-  if (clientUser && message.mentions.has(clientUser)) return true
-
-  return false
-}
+const isHighlightCommand = (message: Message): boolean => message.content.startsWith(commandName)
+  // eslint-disable-next-line @typescript-eslint/no-extra-parens
+  || (message.client.user !== null && message.mentions.has(message.client.user))
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 client.on('message', message => {
