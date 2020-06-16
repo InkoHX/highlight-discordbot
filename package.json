@@ -23,6 +23,7 @@
   },
   "keywords": [],
   "scripts": {
+    "start": "node ./dist/index.js",
     "lint": "eslint --ext .ts --ignore-path .gitignore ./src",
     "lint:fix": "eslint --ext .ts --ignore-path .gitignore ./src --fix",
     "compile": "tsc -p .",
