@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-extra-parens */
 import { Client, Message } from 'discord.js'
 import { highlightAuto } from 'highlight.js'
 import { format } from 'prettier'
@@ -31,8 +32,8 @@ const sendHighlightedCode = (targetMessage: Message, executorMessage: Message): 
 }
 
 const isHighlightCommand = (message: Message): boolean => message.content.startsWith(commandName)
-  // eslint-disable-next-line @typescript-eslint/no-extra-parens
-  || (message.client.user !== null && message.mentions.has(message.client.user))
+  || (message.client.user !== null && message.content.startsWith(`<@!${message.client.user.id}>`))
+  || (message.client.user !== null && message.content.startsWith(`<@${message.client.user.id}>`))
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 client.on('message', message => {
