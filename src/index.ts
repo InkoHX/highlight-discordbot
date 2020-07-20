@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-extra-parens */
-import { Client, Message } from 'discord.js'
+import { Client, Intents, Message } from 'discord.js'
 import { highlightAuto } from 'highlight.js'
 import { format } from 'prettier'
 
 type Nullable<T> = T | undefined | null 
 type LanguageSubset = 'typescript' | 'javascript' | 'yaml' | 'json'
 
-const client = new Client()
+const client = new Client({
+  ws: {
+    intents: Intents.NON_PRIVILEGED
+  }
+})
 
 client.once('ready', () => console.log('READY'))
 
