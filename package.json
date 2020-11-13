@@ -32,7 +32,7 @@
     "watch:test": "tsc -w -p . --noEmit"
   },
   "dependencies": {
-    "discord.js": "^12.4.0",
+    "discord.js": "^12.4.1",
     "highlight.js": "^10.0.3",
     "prettier": "^2.1.2"
   },
