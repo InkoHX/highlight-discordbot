@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "discord.js": "^12.5.1",
-    "highlight.js": "^10.4.0",
+    "highlight.js": "^10.4.1",
     "prettier": "^2.1.2"
   },
   "peerDependencies": {},
